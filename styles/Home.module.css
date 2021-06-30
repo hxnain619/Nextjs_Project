@@ -150,4 +150,7 @@
     .card {
         min-height: 350px;
     }
+    .main_heading span:first-child {
+        font-size: 38px;
+    }
 }
