@@ -42,7 +42,7 @@ const JobCard = ({ JobDetails }) => {
                     </div>
                     <div style={{ textAlign: 'right', lineHeight: 2 }}>
 
-                        <a href={`http://${jobDLPUrl}`} target="_blank" className={styles.button} >Apply Now</a>
+                        <a href={`http://${jobDLPUrl}`} target="_blank" rel="noreferrer"  className={styles.button} >Apply Now</a>
                     </div>
                 </Grid>
             </Grid>
