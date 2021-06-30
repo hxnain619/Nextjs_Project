@@ -1,5 +1,6 @@
 import styles from '../styles/Home.module.css'
-import { Grid, Card, Typography, CardContent, Chip, Badge } from '@material-ui/core';
+import { Grid, Card, Typography, CardContent, Chip} from '@material-ui/core';
+import Image from 'next/image';
 
 // Job Card, it will get the details of each job from props and will render the data as required
 const JobCard = ({ JobDetails }) => {
@@ -10,12 +11,13 @@ const JobCard = ({ JobDetails }) => {
             {showNewJobBedge && <div className={styles.badge} >NEW</div>}
             <Grid container >
                 <Grid item xs={12} md={4} className={styles.img_container}>
-                    {companyLogo ? <img
+                    {companyLogo ? <Image
                         className={styles.cover}
                         src={companyLogo}
+                        layout="fill"
                     /> : <span style={{ fontSize: 88, padding: 10, color: '#2c2c2c', margin: '0 auto' }}>{companyInitial}</span>}
                 </Grid>
-                <Grid item xs={12} md={8} style={{ paddingTop: 0 }}>
+                <Grid item xs={12} md={8} style={{ paddingTop: 0, minHeight: 160 }}>
                     <CardContent className={styles.content}>
                         <Typography >
                             {companyName}
@@ -25,7 +27,7 @@ const JobCard = ({ JobDetails }) => {
                         </Typography>
                         <div >
                             {skillsets.map((skill, i) => {
-                                if (i < 2) {
+                                if (i < 3) {
                                     return <Chip style={{ marginTop: 5, marginLeft: 5, fontSize: 12 }} color="secondary" label={skill} />
                                 }
                             })}
@@ -39,7 +41,7 @@ const JobCard = ({ JobDetails }) => {
                         {shortDesc}
                     </div>
                     <div style={{ textAlign: 'right', lineHeight: 2 }}>
-                        
+
                         <a href={`http://${jobDLPUrl}`} target="_blank" className={styles.button} >Apply Now</a>
                     </div>
                 </Grid>
