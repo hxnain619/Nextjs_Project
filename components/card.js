@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 // Job Card, it will get the details of each job from props and will render the data as required
 const JobCard = ({ JobDetails }) => {
-    let { jobId, companyLogo, companyName, shortDesc, jobTitle, jobDLPUrl, skillsets, companyInitial, showNewJobBedge } = JobDetails;
+    let { jobId, companyLogo, companyName, shortDesc, jobTitle, OBJurl, skillsets, companyInitial, showNewJobBedge } = JobDetails;
 
     return <Grid key={jobId} item xs={12} md={12} lg={6} xl={4}>
         <Card className={styles.card} spacing={2}>
@@ -42,7 +42,7 @@ const JobCard = ({ JobDetails }) => {
                     </div>
                     <div style={{ textAlign: 'right', lineHeight: 2 }}>
 
-                        <a href={`http://${jobDLPUrl}`} target="_blank" rel="noreferrer"  className={styles.button} >Apply Now</a>
+                        <a href={`http://${OBJurl}`} target="_blank" rel="noreferrer"  className={styles.button} >Apply Now</a>
                     </div>
                 </Grid>
             </Grid>
