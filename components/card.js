@@ -33,7 +33,7 @@ const JobCard = ({ JobDetails }) => {
                         <div >
                             {skillsets.map((skill, i) => {
                                 if (i < 3) {
-                                    return <Chip style={{ marginTop: 5, marginLeft: 5, fontSize: 10 }} label={skill} />
+                                    return <Chip style={{ marginTop: 5, marginLeft: 5, fontSize: 10, color: 'gray' }} label={skill} />
                                 }
                             })}
                         </div>
@@ -47,7 +47,7 @@ const JobCard = ({ JobDetails }) => {
                     </div>
                     <div style={{ textAlign: 'right', lineHeight: 2 }}>
 
-                        <a href={`http://${OBJurl}`} target="_blank" rel="noreferrer"  className={styles.button} >Apply Now</a>
+                        <a href={OBJurl} target="_blank" rel="noreferrer"  className={styles.button} >Apply Now</a>
                     </div>
                 </Grid>
             </Grid>
