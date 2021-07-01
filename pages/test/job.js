@@ -24,7 +24,7 @@ function Jobs({ jobs }) {
 
     // A function to detech the filter type and filter the jobs accordingly
     const Filter = (e, type) => {
-        let val = e.currentTarget.value
+        let val = (e.currentTarget.value).toLowerCase()
         if (type == 'name' && day == 0) {
             setSearch(val)
             let filtered = job.filter((data) => {
@@ -52,7 +52,7 @@ function Jobs({ jobs }) {
     // A function to render the filter search elements
     const FilterElements = () => {
         return (<Grid container justify="center" style={{ marginBottom: 10 }}>
-            <Grid item xs={5} style={{ marginRight: 10 }}>
+            <Grid item xs={12} md={5} style={{ marginRight: 10 }}>
                 <select
                     value={day}
                     className={styles.input}
@@ -62,7 +62,7 @@ function Jobs({ jobs }) {
                     <option value={7}>Last 7 Days</option>
                 </select>
             </Grid>
-            <Grid item xs={5}>
+            <Grid item xs={12} md={5}>
                 <input type="search" placeholder="Search By Company Name" className={styles.input} value={search} onChange={(e) => Filter(e, 'name')} />
             </Grid>
         </Grid>)
@@ -82,14 +82,16 @@ function Jobs({ jobs }) {
                         // filtered data wil be rendered here
                         if (index < 11) {
                             return (<JobCard
+                                key={index}
                                 JobDetails={data}
                             />)
                         }
                     }) :
-                    jobs.map((data, index) => {
+                        jobs.map((data, index) => {
                             // All the jobs wil be rendered here
                             if (index < 11) {
                                 return (<JobCard
+                                    key={index}
                                     JobDetails={data}
                                 />)
                             }

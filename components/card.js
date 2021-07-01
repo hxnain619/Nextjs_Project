@@ -2,6 +2,11 @@ import styles from '../styles/Home.module.css'
 import { Grid, Card, Typography, CardContent, Chip} from '@material-ui/core';
 import Image from 'next/image';
 
+const COLOR  = ['red', 'yellow', 'green', 'black', 'orange', 'purple']
+const rand_BG = () => {
+    let rand = Math.floor(Math.random()*5)
+    return COLOR[rand]
+}
 // Job Card, it will get the details of each job from props and will render the data as required
 const JobCard = ({ JobDetails }) => {
     let { jobId, companyLogo, companyName, shortDesc, jobTitle, OBJurl, skillsets, companyInitial, showNewJobBedge } = JobDetails;
@@ -15,9 +20,9 @@ const JobCard = ({ JobDetails }) => {
                         className={styles.cover}
                         src={companyLogo}
                         layout="fill"
-                    /> : <span style={{ fontSize: 88, padding: 10, color: '#2c2c2c', margin: '0 auto' }}>{companyInitial}</span>}
+                    /> : <span style={{ fontSize: 88, padding: '5px 25px', color: 'white', margin: '0 auto', background: rand_BG() }}>{companyInitial}</span>}
                 </Grid>
-                <Grid item xs={12} md={8} style={{ paddingTop: 0, minHeight: 160 }}>
+                <Grid item xs={12} md={8} style={{ paddingTop: 0, minHeight: 160, maxHeight: 160 }}>
                     <CardContent className={styles.content}>
                         <Typography >
                             {companyName}
@@ -28,7 +33,7 @@ const JobCard = ({ JobDetails }) => {
                         <div >
                             {skillsets.map((skill, i) => {
                                 if (i < 3) {
-                                    return <Chip style={{ marginTop: 5, marginLeft: 5, fontSize: 12 }} color="secondary" label={skill} />
+                                    return <Chip style={{ marginTop: 5, marginLeft: 5, fontSize: 10 }} label={skill} />
                                 }
                             })}
                         </div>
