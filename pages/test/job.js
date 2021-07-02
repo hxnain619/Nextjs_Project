@@ -25,7 +25,6 @@ function Jobs({ jobs }) {
     // A function to detech the filter type and filter the jobs accordingly
     const Filter = (e, type) => {
         let val = (e.currentTarget.value).toLowerCase()
-        if (type == 'name' && day == 0) {
             setSearch(val)
             let filtered = job.filter((data) => {
                 if (((data.companyName).toLowerCase()).includes(val)) {
@@ -33,8 +32,9 @@ function Jobs({ jobs }) {
                 }
             })
             setFilteredJobs(filtered)
-        } else if (type == 'day' && search == '') {
-            setDay(val)
+    }
+    const filterByDays = (e) => {
+                    setDay(val)
             let filtered = job.filter((data) => {
                 let current = new Date();
                 let jobDate = new Date(data.OBJpostingDate)
@@ -46,8 +46,21 @@ function Jobs({ jobs }) {
                 }
             })
             setFilteredJobs(filtered)
-        }
+    }
+    const filterByDays = (e) => {
+        let val = e.currentTarget.value
+        setDay(val)
+        let filtered = job.filter((data) => {
+            let current = new Date();
+            let jobDate = new Date(data.OBJpostingDate)
+            const diffTime = Math.abs(jobDate - current);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
+            if (diffDays <= 7) {
+                return data
+            }
+        })
+        setFilteredJobs(filtered)
     }
     // A function to render the filter search elements
     const FilterElements = () => {
@@ -56,14 +69,14 @@ function Jobs({ jobs }) {
                 <select
                     value={day}
                     className={styles.input}
-                    onChange={(e) => Filter(e, 'day')}
+                    onChange={filterByDays}
                 >
                     <option value={0} >Filter By Days</option>
                     <option value={7}>Last 7 Days</option>
                 </select>
             </Grid>
             <Grid item xs={12} md={5}>
-                <input type="search" placeholder="Search By Company Name" className={styles.input} value={search} onChange={(e) => Filter(e, 'name')} />
+                <input type="search" placeholder="Search By Company Name" className={styles.input} value={search} onChange={Filter} />
             </Grid>
         </Grid>)
     }
