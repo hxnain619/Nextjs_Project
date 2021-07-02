@@ -23,30 +23,17 @@ function Jobs({ jobs }) {
     }, [jobs])
 
     // A function to detech the filter type and filter the jobs accordingly
-    const Filter = (e, type) => {
+    const Filter = (e) => {
         let val = (e.currentTarget.value).toLowerCase()
-            setSearch(val)
-            let filtered = job.filter((data) => {
-                if (((data.companyName).toLowerCase()).includes(val)) {
-                    return data
-                }
-            })
-            setFilteredJobs(filtered)
+        setSearch(val)
+        let filtered = job.filter((data) => {
+            if (((data.companyName).toLowerCase()).includes(val)) {
+                return data
+            }
+        })
+        setFilteredJobs(filtered)
     }
-    const filterByDays = (e) => {
-                    setDay(val)
-            let filtered = job.filter((data) => {
-                let current = new Date();
-                let jobDate = new Date(data.OBJpostingDate)
-                const diffTime = Math.abs(jobDate - current);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-                if (diffDays <= 7) {
-                    return data
-                }
-            })
-            setFilteredJobs(filtered)
-    }
     const filterByDays = (e) => {
         let val = e.currentTarget.value
         setDay(val)
